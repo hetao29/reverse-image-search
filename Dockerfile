@@ -15,8 +15,6 @@ RUN sh /app/local/bin/activate
 ENV HF_ENDPOINT=https://hf-mirror.com
 ENV PATH="$PATH:/app/local/bin"
 
-RUN pip config --user set global.index-url http://mirrors.aliyun.com/pypi/simple/
-RUN pip config --user set global.trusted-host mirrors.aliyun.com
 RUN pip install uvicorn 
 RUN pip install fastapi 
 RUN pip install pymysql 

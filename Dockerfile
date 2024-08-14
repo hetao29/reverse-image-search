@@ -31,7 +31,9 @@ RUN pip install requests
 RUN pip install numpy
 RUN pip install timm
 RUN pip install torch
-RUN pip cache purge
+RUN pip install torchvision
+
+COPY logs.py /app/reverse_image_search/server/
 
 HEALTHCHECK --interval=5s --timeout=5s --retries=3 \
     CMD ps aux | grep "python" | grep -v "grep" > /dev/null; if [ 0 != $? ]; then exit 1; fi

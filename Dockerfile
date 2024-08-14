@@ -7,7 +7,7 @@ RUN apt-get install -y libgl1 git
 RUN apt-get install -y python3 python3-opencv
 RUN apt-get install -y python3-venv
 WORKDIR /app
-RUN git clone --depth 1 git@github.com:AndsGo/reverse_image_search.git
+RUN git clone --depth 1 https://github.com/AndsGo/reverse_image_search.git
 
 RUN python3 -m venv /app/local
 RUN sh /app/local/bin/activate

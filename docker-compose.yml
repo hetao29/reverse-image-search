@@ -1,0 +1,20 @@
+services:
+  search:
+    image: hetao29/reverse-image-search:latest
+    volumes:
+      - data_root:/root
+    ports:
+      - "5000:5000"
+    configs:
+      - source: conf
+        target: /app/reverse_image_search/server/config.py
+volumes:
+  data_root:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/milvus/data/root/
+configs:
+  conf:
+    file: ./config.py

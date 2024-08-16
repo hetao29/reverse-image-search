@@ -6,15 +6,12 @@ RUN apt-get update
 RUN apt-get install -y libgl1 git
 RUN apt-get install -y python3 python3-opencv
 RUN apt-get install -y python3-venv
+
 WORKDIR /app
-RUN git clone --depth 1 https://github.com/AndsGo/reverse_image_search.git
+ENV PATH="$PATH:/app/local/bin"
 
 RUN python3 -m venv /app/local
 RUN sh /app/local/bin/activate
-
-ENV HF_ENDPOINT=https://hf-mirror.com
-ENV PATH="$PATH:/app/local/bin"
-
 RUN pip config --user set global.index-url http://mirrors.aliyun.com/pypi/simple/
 RUN pip config --user set global.trusted-host mirrors.aliyun.com
 RUN pip install uvicorn 
@@ -33,6 +30,8 @@ RUN pip install timm
 RUN pip install torch
 RUN pip install torchvision
 
+ENV HF_ENDPOINT=https://hf-mirror.com
+RUN git clone --depth 1 https://github.com/AndsGo/reverse_image_search.git
 COPY logs.py /app/reverse_image_search/server/
 
 HEALTHCHECK --interval=5s --timeout=5s --retries=3 \

@@ -31,8 +31,7 @@ RUN pip install torch
 RUN pip install torchvision
 
 ENV HF_ENDPOINT=https://hf-mirror.com
-RUN git clone --depth 1 https://github.com/AndsGo/reverse_image_search.git
-COPY logs.py /app/reverse_image_search/server/
+RUN git clone --depth 1 https://github.com/hetao29/reverse_image_search.git
 
 HEALTHCHECK --interval=5s --timeout=5s --retries=3 \
     CMD ps aux | grep "python" | grep -v "grep" > /dev/null; if [ 0 != $? ]; then exit 1; fi
